@@ -1,0 +1,75 @@
+.loginContainer {
+    padding-top: 70px;
+    text-align: center;
+    height: 100vh;
+    background-image: url("/ems_advent_bg.png");
+    background-size: cover;
+    color: white;
+    font-family: "Mountains of Christmas", serif!important;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.loginContainer h1 {
+    font-size: 3rem;
+}
+
+.loginCard {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 2px solid white;
+    border-radius: 8px;
+    width: 80%;
+    min-width: 300px;
+    max-width: 500px;
+    text-align: center;
+    font-family: Roboto, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.loginCard h1 {
+    margin-top: 20px;
+}
+.loginForm {
+    padding: 20px;
+    width: 100%;
+}
+
+.loginForm button {
+    background-color: #FFD700;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 1.2rem;
+}
+
+.loginForm button:hover {
+    background-color: rgba(255, 215, 0, 0.7);
+    cursor: pointer;
+}
+
+.loginControl {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 10px 0;
+}
+
+.loginControl label {
+    margin-bottom: 5px;
+}
+
+.loginControl input {
+    padding: 10px 20px;
+    width: 100%;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: none;
+}

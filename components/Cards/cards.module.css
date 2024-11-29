@@ -1,0 +1,99 @@
+.card {
+    position: relative;
+    border-radius: 12px;
+    color: black;
+    background-color: #f3f3f3;
+    font-size: 18px;
+    text-align: center;
+    padding: 20px 20px 0px 20px;
+}
+
+.card::before {
+    content: "";
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    border-radius: 12px;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    border-radius: 12px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.cardLocked::after {
+    background-image: url("/locked-bg.png");
+}
+
+.cardEffectBg::before {
+    background-image: url("/effect.png");
+}
+
+.card:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s;
+}
+
+.card img {
+    width: auto;
+    height: 50%;
+}
+
+.card.bottomCenter {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card:hover .cardHeader i {
+    transform: translateX(10px);
+    transition: transform 0.3s;
+}
+
+.card-square {
+    height: 100%; /* Füllt die Höhe der Zeile */
+}
+
+/* Breite Karte (2 Spalten) */
+.card-wide {
+    grid-column: span 2; /* Nimmt 2 Spalten ein */
+    height: 100%; /* Füllt die Höhe der Zeile */
+}
+
+/* Große Karte (2x2) */
+.card-large {
+    grid-column: span 2; /* Nimmt 2 Spalten ein */
+    grid-row: span 2; /* Nimmt 2 Reihen ein */
+    height: 100%; /* Höhe entsprechend der Zeilen */
+}
+
+.cardHeader {
+    display: flex;
+    justify-content: space-between;
+    font-size: 2rem;
+    font-weight: 350;
+    padding: 0px 10px;
+    width: 100%;
+    z-index: 2;
+}
+
+.cardHeader i {
+    transform: translateX(0);
+    transition: transform 0.3s;
+}

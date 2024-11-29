@@ -1,0 +1,78 @@
+.chestContainer {
+    padding-top: 8rem;
+    text-align: center;
+    min-height: 100vh;
+    background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 100 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg"><path d="M0,50 Q50,2 100,50 L100,0 L0,0 Z" fill="rgba(218, 44, 56, 1)"/></svg>');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+}
+
+.chestContainer h1 {
+    font-family: "Mountains of Christmas", serif;
+    font-size: 5rem;
+    font-weight: 700;
+}
+
+.tableContainer {
+    margin: 2rem 0 4rem 0;
+    display: flex;
+    justify-content: center;
+}
+
+.tableContainer table {
+    border-radius: 12px;
+    -webkit-box-shadow: 0px 12px 28px 18px rgba(0,0,0,0.2);
+    box-shadow: 0px 12px 28px 18px rgba(0,0,0,0.2);
+    border-spacing: 0;
+    min-width: 360px;
+    width: 70%;
+}
+
+.tableContainer table th,
+.tableContainer table td {
+    text-align: left;
+    padding: 1rem 1.5rem;
+}
+
+.tableContainer table thead {
+    background-color: #FFD700;
+}
+
+.tableContainer table thead th:first-child {
+    border-radius: 12px 0 0 0;
+}
+
+.tableContainer table thead th:last-child {
+    border-radius: 0 12px 0 0;
+}
+
+.tableContainer table tbody tr td {
+    border-bottom: 1px solid #eaeaea;
+    background-color: white;
+    white-space: pre-line;
+}
+
+.tableContainer table tbody tr td a:hover {
+    cursor: pointer;
+}
+
+.tableContainer table tbody tr td a span {
+    margin-right: 0.5rem;
+}
+
+.tableContainer table tbody tr td a span:hover {
+    text-decoration: underline;
+}
+
+.tableContainer table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tableContainer table tbody tr:last-child td:first-child {
+    border-radius: 0 0 0 12px;
+}
+
+.tableContainer table tbody tr:last-child td:last-child {
+    border-radius: 0 0 12px 0;
+}
