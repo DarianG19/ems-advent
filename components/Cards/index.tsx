@@ -8,8 +8,6 @@ export default function Card({ doorNumber, format, imgUrl, color }: Readonly<{ d
     const [isModalOpen, setIsModalOpen] = useState(false);
     const router = useRouter();
 
-    const otis = true;
-
     const openModal = () => setIsModalOpen(true);
     const closeModal = () => setIsModalOpen(false);
 
@@ -17,7 +15,7 @@ export default function Card({ doorNumber, format, imgUrl, color }: Readonly<{ d
         const today = new Date();
         const day = today.getDate();
         const month = today.getMonth() + 1;
-        if (day >= doorNumber && month === 12 || otis) {
+        if (day >= doorNumber && month === 12) {
             router.push(`/doors/${doorNumber}`);
             return;
         }
