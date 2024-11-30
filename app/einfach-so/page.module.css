@@ -1,4 +1,25 @@
 .einfachSoContainer {
     padding-top: 8rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.einfachSoContainer h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.einfachSoContainer p {
+    line-height: 1.5;
+    margin-bottom: 2rem;
+    max-width: 600px;
     text-align: center;
+}
+
+.einfachSoContainer img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
 }

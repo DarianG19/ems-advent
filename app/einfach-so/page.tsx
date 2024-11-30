@@ -1,6 +1,7 @@
 import styles from './page.module.css';
 import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
+import Image from "next/image";
 
 export async function isAuthenticaed(): Promise<boolean> {
     const cookieStore = cookies();
@@ -32,8 +33,9 @@ export default async function Page() {
 
     return (
         <div className={styles.einfachSoContainer}>
-            <h1>Einfach so ein bisschen Text</h1>
-            <p>Das ist einfach so</p>
+            <h1>Soooo Ems ♥️</h1>
+            <p>Da du mir auch einen Adventskalender geschenkt hast, dachte ich, es wäre eine coole Idee, wenn ich meinen kleinen Informatiker raushängen lasse und dir auch was Kleines bastle. Du kannst die Türchen einsammeln und dann später bei mir zu Hause abholen ;)</p>
+            <Image src={"/toad.png"} alt={"Toad Showing Tongue"} width={571} height={571}/>
         </div>
     );
 }

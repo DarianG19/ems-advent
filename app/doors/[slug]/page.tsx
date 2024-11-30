@@ -1,5 +1,6 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+import Image from "next/image";
 import styles from './page.module.css';
 import ClientCollectButton from "@/components/ClientButton/ClientCollectButton";
 
@@ -34,7 +35,7 @@ async function fetchDoor(slug: string): Promise<Door | null> {
     }
 
     if (!response.ok) {
-        redirect('/error'); // Weiterleitung bei Serverfehler
+        redirect('/login'); // Weiterleitung bei Serverfehler
     }
 
     return response.json();
@@ -43,9 +44,10 @@ async function fetchDoor(slug: string): Promise<Door | null> {
 
 export default async function Page({ params }: { params: { slug: string } }) {
     const door = await fetchDoor(params.slug); // Türchen-Daten abrufen
+    console.log(door?.title);
 
     if (!door) {
-        redirect('/error'); // Weiterleitung, falls keine Daten gefunden wurden
+        redirect('/not-found'); // Weiterleitung, falls keine Daten gefunden wurden
     }
 
     // Server-seitiges Rendern der Seite
@@ -56,6 +58,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <div className={styles.doorDetailsCard}>
                 <h2>{door.title}</h2>
                 <p>{door.description}</p>
+                <Image src={door.imageUrl} alt={door.title} width={200} height={200} />
                 <form method="POST" action={`/doors/collect/${params.slug}`}>
                     <ClientCollectButton slug={door.day} collected={door.collected} />
                 </form>
