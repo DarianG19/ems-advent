@@ -3,14 +3,7 @@ import { redirect } from 'next/navigation';
 import Image from "next/image";
 import styles from './page.module.css';
 import ClientCollectButton from "@/components/ClientButton/ClientCollectButton";
-
-export interface Door {
-    day: number;
-    title: string;
-    description: string;
-    imageUrl: string;
-    collected: boolean;
-}
+import {Door} from "@/utils/interfaces";
 
 async function fetchDoor(slug: string): Promise<Door | null> {
     const cookieStore = cookies();

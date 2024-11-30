@@ -3,14 +3,7 @@ import { redirect } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from './doors.module.css';
-
-export interface Door {
-    day: number;
-    title: string;
-    description: string;
-    imageUrl: number;
-    collected: boolean;
-}
+import {Door} from "@/utils/interfaces";
 
 async function fetchDoors(): Promise<Door[]> {
     const cookieStore = cookies();
