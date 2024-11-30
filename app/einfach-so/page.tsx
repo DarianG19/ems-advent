@@ -1,28 +1,7 @@
 import styles from './page.module.css';
-import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
 import Image from "next/image";
-
-export async function isAuthenticaed(): Promise<boolean> {
-    const cookieStore = cookies();
-    const token = cookieStore.get('jwt')?.value;
-
-    if (!token) {
-        return false;
-    }
-
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/check`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            Cookie: token ? `jwt=${token}` : '',
-        },
-        credentials: 'include',
-        cache: 'no-store',
-    });
-
-    return response.ok;
-}
+import {isAuthenticaed} from "@/utils/auth";
 
 export default async function Page() {
     const isAuthenticated = await isAuthenticaed();

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Card from "@/components/Cards";
 import {redirect} from "next/navigation";
 import LogoutButton from "@/components/LogoutButton/page";
-import {isAuthenticaed} from "@/app/einfach-so/page";
+import {isAuthenticaed} from "@/utils/auth";
 
 const colorPalette = {
     red: "#DA2C38",

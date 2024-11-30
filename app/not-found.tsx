@@ -1,4 +1,4 @@
-import {isAuthenticaed} from "@/app/einfach-so/page";
+import {isAuthenticaed} from "@/utils/auth";
 import {redirect} from "next/navigation";
 
 export default async function NotFound() {
