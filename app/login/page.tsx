@@ -1,41 +1,39 @@
 "use client";
-import { useState } from 'react';
-import styles from './login.module.css';
-import {useRouter} from "next/navigation";
-import {useAuth} from "@/components/auth/AuthContext";
+
+import { useState } from "react";
+import styles from "./login.module.css";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
-    const { setLoading } = useAuth();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
 
     const router = useRouter();
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        setError('');
+        setError("");
 
         try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/login`, {
-                method: 'POST',
+                method: "POST",
                 headers: {
-                    'Content-Type': 'application/json',
+                    "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ username: username, password }),
+                body: JSON.stringify({ username, password }),
+                credentials: "include", // Cookies automatisch senden und empfangen
             });
 
             if (!response.ok) {
-                throw new Error('Login failed');
+                throw new Error("Login failed");
             }
 
-            const data = await response.json();
-            sessionStorage.setItem('jwt', data.token);
-            setLoading(false);
-            router.push('/');
+            // Nach erfolgreichem Login zur Startseite weiterleiten
+            router.push("/");
         } catch (error) {
             console.error(error);
-            setError('Login failed. Please check your credentials and try again.');
+            setError("Login failed. Please check your credentials and try again.");
         }
     };
 
@@ -46,7 +44,7 @@ export default function Login() {
                 <h1>Login</h1>
                 <form className={styles.loginForm} onSubmit={handleSubmit}>
                     <div className={styles.loginControl}>
-                        <label>Email</label>
+                        <label>Benutzername</label>
                         <input
                             type="text"
                             placeholder="Benutzername"
@@ -56,10 +54,10 @@ export default function Login() {
                         />
                     </div>
                     <div className={styles.loginControl}>
-                        <label>Password</label>
+                        <label>Passwort</label>
                         <input
                             type="password"
-                            placeholder="Password"
+                            placeholder="Passwort"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required

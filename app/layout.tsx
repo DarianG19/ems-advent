@@ -1,25 +1,27 @@
 import type { Metadata } from "next";
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import "./globals.css";
-import AuthProviderWrapper from "@/components/auth/AuthProviderWrapper";
+import ClientLayout from "@/components/layouts/ClientLayout";
 
 export const metadata: Metadata = {
-  title: "Ems Advent",
-  description: "Adventskalender für Ems",
+    title: "Ems Advent",
+    description: "Adventskalender für Ems",
 };
 
 export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
+                                       children,
+                                   }: Readonly<{
+    children: React.ReactNode;
 }>) {
-  return (
+
+
+    return (
         <html lang="de">
-            <body>
-                <AuthProviderWrapper>
-                    {children}
-                </AuthProviderWrapper>
-            </body>
+        <body>
+            <ClientLayout>
+                {children}
+            </ClientLayout>
+        </body>
         </html>
-  );
+    );
 }

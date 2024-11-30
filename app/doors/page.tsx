@@ -1,8 +1,8 @@
-"use client";
+import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
+import Image from 'next/image';
+import Link from 'next/link';
 import styles from './doors.module.css';
-import Image from "next/image";
-import Link from "next/link";
-import {useEffect, useState} from "react";
 
 export interface Door {
     day: number;
@@ -12,33 +12,37 @@ export interface Door {
     collected: boolean;
 }
 
-export default function Page() {
-    const [doors, setDoors] = useState<Door[]>([]);
+async function fetchDoors(): Promise<Door[]> {
+    const cookieStore = cookies();
+    const token = cookieStore.get('jwt')?.value;
 
-    useEffect(() => {
-        const fetchDoors = async () => {
-            try {
-                const token = sessionStorage.getItem('jwt');
-                const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/doors/collected`, {
-                    headers: {
-                        'x-auth-token': token ? token : '',
-                    },
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch doors');
-                }
-                const data = await response.json();
-                setDoors(data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
+    if (!token) {
+        redirect('/login'); // Weiterleitung bei fehlendem Token
+    }
 
-        fetchDoors();
-    }, []);
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/doors/collected`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            Cookie: token ? `jwt=${token}` : '',
+        },
+        credentials: 'include',
+        cache: 'no-store', // Daten nicht cachen, immer neu laden
+    });
+
+    if (!response.ok) {
+        redirect('/login'); // Optional: Weiterleitung bei fehlgeschlagener Datenabfrage
+    }
+
+    return response.json();
+}
+
+export default async function Page() {
+    const doors = await fetchDoors(); // Daten serverseitig abrufen
+
     return (
         <div className={styles.chestContainer}>
-            <Image src={"/Giant_Chest.png"} alt={"Truhe"} height={200} width={197}/>
+            <Image src="/Giant_Chest.png" alt="Truhe" height={200} width={197} />
             <h1>Übersicht</h1>
             <div className={styles.tableContainer}>
                 <table>
@@ -46,7 +50,9 @@ export default function Page() {
                     <tr>
                         <th>Name</th>
                         <th>No.</th>
-                        <th><i style={{fontSize: "1.5rem"}} className={"bi bi-check"}></i></th>
+                        <th>
+                            <i style={{ fontSize: '1.5rem' }} className={'bi bi-check'}></i>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
@@ -55,11 +61,13 @@ export default function Page() {
                             <td>
                                 <Link href={`/doors/${door.day}`}>
                                     <span>{door.title}</span>
-                                    <i className={"bi bi-box-arrow-up-right"}></i>
+                                    <i className={'bi bi-box-arrow-up-right'}></i>
                                 </Link>
                             </td>
                             <td>{door.day}</td>
-                            <td><i style={{fontSize: "1.5rem"}} className={"bi bi-check"}></i></td>
+                            <td>
+                                <i style={{ fontSize: '1.5rem' }} className={'bi bi-check'}></i>
+                            </td>
                         </tr>
                     ))}
                     </tbody>

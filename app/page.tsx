@@ -1,9 +1,10 @@
-"use client";
-
 import styles from './page.module.css';
 import Image from "next/image";
 import Card from "@/components/Cards";
-import {useRouter} from "next/navigation";
+import {cookies} from "next/headers";
+import {redirect} from "next/navigation";
+import LogoutButton from "@/components/LogoutButton/page";
+import {isAuthenticaed} from "@/app/einfach-so/page";
 
 const colorPalette = {
     red: "#DA2C38",
@@ -21,12 +22,11 @@ const picUrls = [
     "/effect.png",
 ]
 
-export default function Home() {
-    const router = useRouter();
+export default async function Home() {
+    const isAuthenticated = await isAuthenticaed();
 
-    const logout = () => {
-        sessionStorage.removeItem('jwt');
-        router.push("/login");
+    if (!isAuthenticated) {
+        redirect('/login');
     }
 
   return (
@@ -65,7 +65,7 @@ export default function Home() {
                 <Card doorNumber={24} format={"large"} imgUrl={picUrls[3]} color={colorPalette.yellow}/>
           </div>
           <hr />
-          <button onClick={logout} className={styles.logoutButton}>Abmelden</button>
+          <LogoutButton />
       </div>
   );
 }
