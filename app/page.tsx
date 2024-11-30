@@ -1,7 +1,6 @@
 import styles from './page.module.css';
 import Image from "next/image";
 import Card from "@/components/Cards";
-import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
 import LogoutButton from "@/components/LogoutButton/page";
 import {isAuthenticaed} from "@/app/einfach-so/page";
