@@ -4,6 +4,8 @@ export async function isAuthenticaed(): Promise<boolean> {
     const cookieStore = cookies();
     const token = cookieStore.get('jwt')?.value;
 
+    console.log("In isAuthenticated function, token is: ", token !== undefined);
+
     if (!token) {
         return false;
     }
