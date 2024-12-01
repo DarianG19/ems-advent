@@ -7,7 +7,7 @@ import {Door} from "@/utils/interfaces";
 
 async function fetchDoor(slug: string): Promise<Door | null> {
     const cookieStore = cookies();
-    const token = cookieStore.get('jwt')?.value;
+    const token = cookieStore.get('_vercel_jwt')?.value;
 
     if (!token) {
         redirect('/login'); // Weiterleitung bei fehlendem Token

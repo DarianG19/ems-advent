@@ -2,7 +2,7 @@ import {cookies} from "next/headers";
 
 export async function isAuthenticaed(): Promise<boolean> {
     const cookieStore = cookies();
-    const token = cookieStore.get('jwt')?.value;
+    const token = cookieStore.get('_vercel_jwt')?.value;
 
     console.log("Cookie Store: ",cookieStore);
 
