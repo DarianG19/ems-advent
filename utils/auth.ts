@@ -22,5 +22,7 @@ export async function isAuthenticaed(): Promise<boolean> {
         cache: 'no-store',
     });
 
+    console.log("Response: ",response)
+
     return response.ok;
 }
